@@ -8,18 +8,41 @@ function getAllDirectors(movies) {
   let directorArray = movies.map(function (movieDirector) {
     return movieDirector.director;
   });
-  console.log("coucou",directorArray)
   return directorArray;
 }
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+  let isSpiel = movies.filter(function(spie){
+    return spie.director === "Steven Spielberg" && spie.genre.includes("Drama");
+  });
+    return isSpiel.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
-
+function scoresAverage(movies) {
+  if (movies.length < 1) {return 0};
+  let movieWithScore = movies.filter(function (el){
+    return typeof el.score ==="number";
+  })
+  let starLevel = movieWithScore.reduce(function (accumulator, movie) {
+    return (accumulator + movie.score);
+  },0);
+  const avg = starLevel/movies.length
+  return Number(avg.toFixed(2));
+}
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+  // filtre pour prendre que les films qui on drama
+  // faire l'average des score 
+  let isDrama = movies.filter(function(el2){
+    return el2.genre.includes("Drama");
+    });
+    let  dramaScore = isDrama.reduce(function(accumulator,msc){
+      return (accumulator +msc.score);
+    },0)
+    const avg2 = dramaScore/isDrama.length
+    return Number(avg2.toFixed(2));
+  }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
